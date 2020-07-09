@@ -10,7 +10,7 @@ const TopBar = () => (
       <Link href="/">
         <li>Página Principal</li>
       </Link>
-      <Link href="/product/[slug]" as="/product/bag">
+      <Link href="/product/[slug]" as="/product/bag-hybrid">
         <li>Mochila DJ</li>
       </Link>
       <Link href="/product/[slug]" as="/product/headphone-bag">
