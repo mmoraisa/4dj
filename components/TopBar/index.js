@@ -3,8 +3,13 @@ import Link from 'next/link';
 
 const TopBar = () => (
   <section id="top-bar">
-    <img id="main-logo" src="/logo.png" alt="Logo da 4DJ" />
+    <Link href="/">
+      <img id="main-logo" src="/logo.png" alt="Logo da 4DJ" />
+    </Link>
     <ul className="top-bar__menu">
+      <Link href="/">
+        <li>Página Principal</li>
+      </Link>
       <Link href="/product/[slug]" as="/product/bag">
         <li>Mochila DJ</li>
       </Link>
@@ -18,6 +23,7 @@ const TopBar = () => (
         justify-content: space-between;
       } 
       #main-logo {
+        cursor: pointer;
         width: 150px;
       }
       .top-bar__menu {
