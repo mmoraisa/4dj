@@ -5,14 +5,9 @@ const Footer = () => (
     <footer>
       <h1>Nos siga nas redes sociais</h1>
       <section id="social-media">
-        <a href="#">
-          <img src="" width="100px" />
-        </a>
-        <a href="#">
-          <img src="" width="120px" />
-        </a>
-        <a href="#">
-          <img src="" width="50px" />
+        <a target="_blank" href="https://www.instagram.com/4djoficial">
+          <img src="/insta.png"/>
+          <span>@4DJOficial</span>
         </a>
       </section>
     </footer>
@@ -30,14 +25,24 @@ const Footer = () => (
         font-weight: bold;
       }
       #social-media {
+        align-items: flex-start;
         display: flex;
         justify-content: center;
       }
       #social-media a {
+        align-items: center;
+        display: flex;
         margin: 20px;
+        text-decoration: none;
       }
       #social-media img {
-        height: 50px;
+        width: 50px;
+      }
+      #social-media span {
+        color: #fff;
+        font-size: 20px;
+        font-weight: 600;
+        margin-left: 10px;
       }
     `}</style>
   </>
