@@ -5,11 +5,9 @@ import ProductCard from '../ProductCard';
 const ProductsCarousel = ({ products }) => {
 
   const [currentProductIndex, setCurrentProductIndex] = useState(0);
-  const [lastProductIndex, setLastProductIndex] = useState(null);
 
   useEffect(() => {
     setCurrentProductIndex(0)
-    setLastProductIndex(null)
   }, [products])
 
   const callPreviousProduct = () => {
@@ -19,7 +17,6 @@ const ProductsCarousel = ({ products }) => {
       ? currentProductIndex - 1
       : products.length - 1;
 
-    setLastProductIndex(currentProductIndex)
     setCurrentProductIndex(getPreviousProductIndex())
   }
 
@@ -30,7 +27,6 @@ const ProductsCarousel = ({ products }) => {
       ? currentProductIndex + 1
       : 0;
 
-    setLastProductIndex(currentProductIndex)
     setCurrentProductIndex(getNextProductIndex())
   }
 
@@ -39,7 +35,9 @@ const ProductsCarousel = ({ products }) => {
       <section id="products-carousel">
         {
           products.map((product, index) =>
-            <div className={`
+            <div
+              key={index}
+              className={`
               products-carousel__product
               ${index === currentProductIndex ? ' active ' : ''}
               ${index > currentProductIndex ? ' to-right ' : ' to-left '}
