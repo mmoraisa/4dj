@@ -10,28 +10,24 @@ const ProductsCarousel = ({ products }) => {
   const [currentProductIndex, setCurrentProductIndex] = useState(0);
   const [elapsedTime, setElapsedTime] = useState(0);
 
-  const incrementElapsedTime = () =>
-    setElapsedTime(elapsedTime => elapsedTime + 1)
+  const incrementElapsedTime = useCallback(
+    () => setElapsedTime(elapsedTime => elapsedTime + 1),
+    []
+  )
 
-  const callPreviousProduct = () => {
-
-    const getPreviousProductIndex = () =>
+  const callPreviousProduct = useCallback(() =>
+    setCurrentProductIndex(
       products[currentProductIndex - 1]
       ? currentProductIndex - 1
-      : products.length - 1;
+      : products.length - 1
+  ), [products, currentProductIndex])
 
-    setCurrentProductIndex(getPreviousProductIndex())
-  }
-
-  const callNextProduct = () => {
-
-    const getNextProductIndex = () =>
+  const callNextProduct = useCallback(() =>
+    setCurrentProductIndex(
       products[currentProductIndex + 1]
       ? currentProductIndex + 1
-      : 0;
-
-    setCurrentProductIndex(getNextProductIndex())
-  }
+      : 0
+  ), [products, currentProductIndex])
 
   useEffect(() => {
     const interval = setInterval(incrementElapsedTime, TIME_TICK * 1000);
