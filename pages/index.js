@@ -20,7 +20,8 @@ export async function getStaticProps() {
   });
 
   const entries = await client.getEntries({
-    content_type: 'product'
+    content_type: 'product',
+    order: 'fields.name'
   });
 
   return {
