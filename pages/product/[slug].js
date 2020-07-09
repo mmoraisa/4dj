@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { createClient }  from 'contentful';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import { FiShoppingCart } from 'react-icons/fi';
@@ -10,18 +10,14 @@ const Product = ({ product, products }) => {
   const [showingImage, setShowingImage] = useState(null);
   const [closingImage, setClosingImage] = useState(false);
 
-  const closeImage = () => {
+  const closeImage = useCallback(() => {
     setClosingImage(true);
 
     setTimeout(() => {
       setShowingImage(null)
       setClosingImage(false)
-    }, 300);
-  }
-
-  const showImage = image => {
-    setShowingImage(image)
-  }
+    }, 300)
+  }, []);
 
   if (!product) {
     return null
@@ -50,7 +46,7 @@ const Product = ({ product, products }) => {
         </section>
         <section id="product__images">
           {product.images.map((image, i) =>
-            <article key={i} className="product__images__item" onClick={() => showImage(image)}>
+            <article key={i} className="product__images__item" onClick={() => setShowingImage(image)}>
               <img src={image.url} alt={image.fileName} />
             </article>
           )}
