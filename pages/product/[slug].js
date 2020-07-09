@@ -31,7 +31,7 @@ const Product = ({ product, products }) => {
     <MainLayout products={products}>
       <div id="image-visualization" className={`${showingImage && !closingImage ? 'active' : ''}`}>
         <div>
-          <button class="image-visualization__btn-close" onClick={closeImage}><GrFormClose /></button>
+          <button className="image-visualization__btn-close" onClick={closeImage}><GrFormClose /></button>
         <img src={showingImage && showingImage.url} alt={showingImage && showingImage.fileName} />
         </div>
       </div>
