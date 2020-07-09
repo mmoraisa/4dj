@@ -10,9 +10,59 @@ const Product = ({ product, products }) => {
   
   return (
     <MainLayout products={products}>
-      <h1>{product.name}</h1>
-      <h2>{product.slogan}</h2>
-      <p>{JSON.stringify(product)}</p>
+      <div id="product">
+        <section id="product__info">
+          <h1>{product.name}</h1>
+          <h2>{product.slogan}</h2>
+          <p>{product.description}</p>
+        </section>
+        <section id="product__images">
+          {product.images.map(image =>
+            <article className="product__images__item">
+              <img src={image.url} alt={image.fileName} />
+            </article>
+          )}
+        </section>
+      </div>
+      <style>{`
+        h1 {
+          font-size: 3em;
+          margin: 1em 0 0 0;
+          text-transform: uppercase;
+        }
+        h2 {
+          font-size: 1em;
+          margin: 0;
+          text-transform: uppercase;
+        }
+        p {
+          line-height: 1.5em;
+          font-size: 1.2em;
+          font-weight: 300;
+        }
+        #product {
+          display: flex;
+        }
+        #product__info {
+          flex: 2;
+          margin-right: 10vw;
+        }
+        #product__images {
+          margin-top: 5vw;
+          display: grid;
+          grid-template-columns: 150px 150px 150px;
+          grid-gap: 10px;
+        }
+        .product__images__item {
+          align-items: center;
+          background: #fff;
+          display: flex;
+          justify-content: center;
+        }
+        #product__images img {
+          width: 100%;
+        }
+      `}</style>
     </MainLayout>
   )
 
