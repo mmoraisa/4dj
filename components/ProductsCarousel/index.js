@@ -1,14 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { FaRegArrowAltCircleLeft, FaRegArrowAltCircleRight } from 'react-icons/fa';
 import ProductCard from '../ProductCard';
 
 const ProductsCarousel = ({ products }) => {
 
-  const [currentProductIndex, setCurrentProductIndex] = useState(0);
+  const TIME_TICK = 1 //seconds
+  const PRODUCT_EXHIBITION_TIME = 10 //seconds
 
-  useEffect(() => {
-    setCurrentProductIndex(0)
-  }, [products])
+  const [currentProductIndex, setCurrentProductIndex] = useState(0);
+  const [elapsedTime, setElapsedTime] = useState(0);
+
+  const incrementElapsedTime = () =>
+    setElapsedTime(elapsedTime => elapsedTime + 1)
 
   const callPreviousProduct = () => {
 
@@ -29,6 +32,25 @@ const ProductsCarousel = ({ products }) => {
 
     setCurrentProductIndex(getNextProductIndex())
   }
+
+  useEffect(() => {
+    const interval = setInterval(incrementElapsedTime, TIME_TICK * 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    setCurrentProductIndex(0)
+  }, [products])
+
+  useEffect(() => {
+    if (elapsedTime - TIME_TICK >= PRODUCT_EXHIBITION_TIME) {
+      callNextProduct()
+    }
+  }, [elapsedTime])
+
+  useEffect(() => {
+    setElapsedTime(0)
+  }, [currentProductIndex])
 
   return (
     <>
