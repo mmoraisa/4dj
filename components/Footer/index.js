@@ -6,7 +6,7 @@ const Footer = () => (
       <h1>Nos siga nas redes sociais</h1>
       <section id="social-media">
         <a rel="noopener noreferrer" target="_blank" href="https://www.instagram.com/4djoficial">
-          <img src="/insta.png"/>
+          <img alt="Instagram logo" src="/insta.png"/>
           <span>@4DJOficial</span>
         </a>
       </section>
