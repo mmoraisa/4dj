@@ -58,7 +58,7 @@ const Product = ({ product, products }) => {
       </div>
       <style>{`
         h1 {
-          font-size: 3em;
+          font-size: 2.5em;
           margin: 1em 0 0 0;
           text-transform: uppercase;
         }

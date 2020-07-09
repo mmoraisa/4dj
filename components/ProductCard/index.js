@@ -30,7 +30,7 @@ const ProductCard = ({ product }) => (
         margin-top: 5vh;
       }
       .product-card h1 {
-        font-size: 3em;
+        font-size: 2.5em;
         font-weight: bold;
         margin: 0;
         text-transform: uppercase;

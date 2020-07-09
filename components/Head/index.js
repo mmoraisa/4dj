@@ -7,11 +7,11 @@ const Head = ({ title = '4DJ', description = "Products 4 DJs" }) => (
     <meta name="description" content={description} />
     <meta name="theme-color" content="#161e32"></meta>
     <meta charSet="utf-8" />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet"></link>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;700&display=swap" rel="stylesheet"></link>
     <style>{`
       html, body {
         color: #fff;
-        font-family: 'Roboto', sans-serif;
+        font-family: 'Source Sans Pro', sans-serif;
         min-height: 100vh;
         width: 100%;
         overflow-x: hidden;

@@ -59,7 +59,7 @@ const TopBar = ({ products }) => (
         list-style: none;
         padding: 20px;
         text-transform: uppercase;
-        font-size: .9em;
+        font-size: 1.3em;
         font-weight: 600;
         opacity: .6;
         transition: .25s all ease;

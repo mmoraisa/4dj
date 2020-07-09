@@ -21,7 +21,7 @@ const Footer = () => (
       }
       footer h1 {
         text-transform: uppercase;
-        font-size: 1.6em;
+        font-size: 1.3em;
         font-weight: bold;
       }
       #social-media {
