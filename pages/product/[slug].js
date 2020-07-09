@@ -76,7 +76,7 @@ const Product = ({ product, products }) => {
           border-radius: 5px;
           color: #222;
           cursor: pointer;
-          display: flex;
+          display: inline-flex;
           justify-content: flex-start;
           font-size: 16px;
           margin-top: 5vh;
