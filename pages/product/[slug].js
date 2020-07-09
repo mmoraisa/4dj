@@ -91,6 +91,7 @@ const Product = ({ product, products }) => {
           cursor: pointer;
           display: flex;
           justify-content: center;
+          max-height: 150px;
           opacity: .8;
           overflow: hidden;
           transition: .25s all ease;
