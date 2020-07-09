@@ -1,7 +1,8 @@
 import React from 'react';
-import MainLayout from '../../layouts/Main';
 import { createClient }  from 'contentful';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
+import { FiShoppingCart } from 'react-icons/fi';
+import MainLayout from '../../layouts/Main';
 
 const Product = ({ product, products }) => {
   
@@ -14,8 +15,13 @@ const Product = ({ product, products }) => {
       <div id="product">
         <section id="product__info">
           <h1>{product.name}</h1>
-          <h2>{product.slogan}</h2>
           <div dangerouslySetInnerHTML={{__html: documentToHtmlString(product.description) }}></div>
+          <a
+            target="_blank"
+            href={product.link}
+            className="product__btn product__btn__buy-now">
+              <FiShoppingCart /><span>Quero a minha agora!</span>
+          </a>
         </section>
         <section id="product__images">
           {product.images.map((image, i) =>
@@ -63,6 +69,34 @@ const Product = ({ product, products }) => {
         #product__images img {
           width: 100%;
         }
+        .product__btn {
+          align-items: center;
+          background: rgba(255, 255, 255, .75);
+          border: none;
+          border-radius: 5px;
+          color: #222;
+          cursor: pointer;
+          display: flex;
+          justify-content: flex-start;
+          font-size: 16px;
+          margin-top: 5vh;
+          outline: none;
+          text-decoration: none;
+          padding: 10px 20px;
+          transition: .3s all ease;
+          opacity: .4;
+        }
+        .product__btn span {
+          margin-left: 10px;
+        }
+        .product__btn__buy-now {
+          background: #64ca62;
+          font-weight: 600;
+          opacity: 1;
+        }
+        .product__btn__buy-now:hover {
+          background: #0aff05;
+        }
       `}</style>
     </MainLayout>
   )
@@ -103,6 +137,7 @@ export async function getStaticProps({ params }) {
     slogan: entry.fields.slogan,
     description: entry.fields.description,
     shortDescription: entry.fields.description,
+    link: entry.fields.link,
     images: entry.fields.images.map(({ fields }) => {
       const { url, fileName } = fields.file
       return { url, fileName }
