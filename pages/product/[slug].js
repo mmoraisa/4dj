@@ -2,7 +2,7 @@ import React from 'react';
 import MainLayout from '../../layouts/Main';
 import { createClient }  from 'contentful';
 
-const Product = ({ product, products, slug }) => {
+const Product = ({ product, products }) => {
   
   if (!product) {
     return null
@@ -11,6 +11,7 @@ const Product = ({ product, products, slug }) => {
   return (
     <MainLayout products={products}>
       <h1>{product.name}</h1>
+      <h2>{product.slogan}</h2>
       <p>{JSON.stringify(product)}</p>
     </MainLayout>
   )
@@ -40,7 +41,6 @@ export async function getStaticProps({ params }) {
   if (!entry) {
     return {
       props: {
-        slug: params.slug,
         product: null,
         products: []
       }
@@ -49,6 +49,7 @@ export async function getStaticProps({ params }) {
 
   const product = {
     name: entry.fields.name,
+    slogan: entry.fields.slogan,
     description: entry.fields.description,
     shortDescription: entry.fields.description,
     images: entry.fields.images.map(({ fields }) => {

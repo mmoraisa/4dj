@@ -1,13 +1,14 @@
 import React from 'react';
-import MainLayout from '../layouts/Main';
 import { createClient }  from 'contentful';
+import MainLayout from '../layouts/Main';
+import ProductsCarousel from '../components/ProductsCarousel';
 
 const Home = ({ products }) => (
   <MainLayout products={products}>
-    <h1>
-      Welcome to 4DJ
-    </h1>
-    <p>{JSON.stringify(products)}</p>
+    {
+      products &&
+      <ProductsCarousel products={products} />
+    }
   </MainLayout>
 )
 
@@ -27,11 +28,13 @@ export async function getStaticProps() {
       products:
         entries && entries.items && entries.items.length
         ? entries.items.map(({ fields }) => {
-          const { featuredImage, name, shortDescription, slug } = fields
+          const { featuredImage, name, slogan, shortDescription, slug, link } = fields
           return {
             name,
+            slogan,
             shortDescription,
             slug,
+            link,
             featuredImage: {
               url: featuredImage.fields.file.url,
               fileName: featuredImage.fields.file.fileName

@@ -21,6 +21,7 @@ const Footer = () => (
         display: flex;
         flex-direction: column;
         justify-content: center;
+        margin-top: 5vh;
         text-align: center;
       }
       footer h1 {

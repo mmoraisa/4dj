@@ -8,7 +8,7 @@ const TopBar = ({ products }) => (
     </Link>
     <ul className="top-bar__menu">
       <Link href="/">
-        <li>Página Principal</li>
+        <li>Início</li>
       </Link>
       {
         products && products.map(product => (
@@ -37,11 +37,12 @@ const TopBar = ({ products }) => (
         padding: 20px;
         text-transform: uppercase;
         font-size: .9em;
-        font-weight: 200;
+        font-weight: 600;
+        opacity: .6;
         transition: .25s all ease;
       }
       .top-bar__menu li:hover {
-        font-weight: bold;
+        opacity: 1;
         text-shadow: 0px 3px 9px rgba(0, 0, 0, 0.2);
       }
     `}</style>
