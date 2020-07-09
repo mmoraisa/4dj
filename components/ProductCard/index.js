@@ -15,6 +15,7 @@ const ProductCard = ({ product }) => (
           <a
             target="_blank"
             href={product.link}
+            rel="noopener noreferrer"
             className="product-card__btn product-card__btn__buy-now">
               <FiShoppingCart /><span>Quero a minha agora!</span>
           </a>

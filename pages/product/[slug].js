@@ -43,6 +43,7 @@ const Product = ({ product, products }) => {
           <a
             target="_blank"
             href={product.link}
+            rel="noopener noreferrer"
             className="product__btn product__btn__buy-now">
               <FiShoppingCart /><span>Quero a minha agora!</span>
           </a>

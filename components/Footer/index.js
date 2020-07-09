@@ -5,7 +5,7 @@ const Footer = () => (
     <footer>
       <h1>Nos siga nas redes sociais</h1>
       <section id="social-media">
-        <a target="_blank" href="https://www.instagram.com/4djoficial">
+        <a rel="noopener noreferrer" target="_blank" href="https://www.instagram.com/4djoficial">
           <img src="/insta.png"/>
           <span>@4DJOficial</span>
         </a>
