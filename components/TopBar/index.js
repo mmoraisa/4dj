@@ -1,11 +1,16 @@
 import React from 'react';
+import Link from 'next/link';
 
 const TopBar = () => (
   <section id="top-bar">
-    <img id="main-logo" src="logo.png" alt="Logo da 4DJ" />
+    <img id="main-logo" src="/logo.png" alt="Logo da 4DJ" />
     <ul className="top-bar__menu">
-      <li>Mochila DJ</li>
-      <li>Porta fone</li>
+      <Link href="/product/[slug]" as="/product/bag">
+        <li>Mochila DJ</li>
+      </Link>
+      <Link href="/product/[slug]" as="/product/headphone-bag">
+        <li>Porta fone</li>
+      </Link>
     </ul>
     <style>{`     
       #top-bar {
