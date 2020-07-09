@@ -88,11 +88,14 @@ const Product = ({ product, products }) => {
           align-items: center;
           background: #fff;
           border-radius: 5px;
+          box-sizing: border-box;
           cursor: pointer;
           display: flex;
           justify-content: center;
-          max-height: 150px;
+          height: 150px;
+          width: 150px;
           opacity: .8;
+          padding: 5px;
           overflow: hidden;
           transition: .25s all ease;
         }
@@ -100,7 +103,8 @@ const Product = ({ product, products }) => {
           opacity: 1;
         }
         #product__images img {
-          width: 100%;
+          max-width: 100%;
+          max-height: 100%;
         }
         .product__btn {
           align-items: center;
