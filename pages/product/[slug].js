@@ -23,7 +23,7 @@ const Product = ({ product, products }) => {
   if (!product) {
     return null
   }
-
+  
   return (
     <>
       <Head title={`4DJ - ${product.name}`} description={product.shortDescription} />
@@ -225,7 +225,7 @@ export async function getStaticProps({ params }) {
     name: entry.fields.name,
     slogan: entry.fields.slogan,
     description: entry.fields.description,
-    shortDescription: entry.fields.description,
+    shortDescription: entry.fields.shortDescription,
     link: entry.fields.link,
     images: entry.fields.images.map(({ fields }) => {
       const { url, fileName } = fields.file
