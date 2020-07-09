@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 
-const TopBar = () => (
+const TopBar = ({ products }) => (
   <section id="top-bar">
     <Link href="/">
       <img id="main-logo" src="/logo.png" alt="Logo da 4DJ" />
@@ -10,12 +10,13 @@ const TopBar = () => (
       <Link href="/">
         <li>Página Principal</li>
       </Link>
-      <Link href="/product/[slug]" as="/product/bag-hybrid">
-        <li>Mochila DJ</li>
-      </Link>
-      <Link href="/product/[slug]" as="/product/headphone-bag">
-        <li>Porta fone</li>
-      </Link>
+      {
+        products && products.map(product => (
+          <Link href="/product/[slug]" as={`/product/${product.slug}`}>
+            <li>{product.name}</li>
+          </Link>
+        ))
+      }
     </ul>
     <style>{`     
       #top-bar {

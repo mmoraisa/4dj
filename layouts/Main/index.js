@@ -5,11 +5,11 @@ import Footer from '../../components/Footer';
 import Head from '../../components/Head';
 import TopBar from '../../components/TopBar';
 
-const Main = ({ children }) => (
+const Main = ({ children, products }) => (
   <>
     <Head />
     <main>
-      <TopBar />
+      <TopBar products={products} />
       <BackgroundCircles />
       <Background />
       <section id="content">

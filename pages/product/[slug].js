@@ -2,19 +2,20 @@ import React from 'react';
 import MainLayout from '../../layouts/Main';
 import { createClient }  from 'contentful';
 
-const Product = ({ product, slug }) => {
+const Product = ({ product, products, slug }) => {
   
   if (!product) {
     return null
   }
   
   return (
-  <MainLayout>
-    <h1>{product.name}</h1>
-    <p>{JSON.stringify(product)}</p>
-  </MainLayout>
-)
-  }
+    <MainLayout products={products}>
+      <h1>{product.name}</h1>
+      <p>{JSON.stringify(product)}</p>
+    </MainLayout>
+  )
+
+}
 
 export async function getStaticProps({ params }) {
 
@@ -26,11 +27,25 @@ export async function getStaticProps({ params }) {
   const { slug } = params
 
   const entries = await client.getEntries({
+    content_type: 'product'
+  });
+
+  const filteredEntries = await client.getEntries({
     content_type: 'product',
     'fields.slug[in]': slug,
   });
 
-  let entry = entries && entries.items && entries.items.length ? entries.items[0] : null;
+  let entry = filteredEntries && filteredEntries.items && filteredEntries.items.length ? filteredEntries.items[0] : null;
+
+  if (!entry) {
+    return {
+      props: {
+        slug: params.slug,
+        product: null,
+        products: []
+      }
+    }
+  }
 
   const product = {
     name: entry.fields.name,
@@ -45,9 +60,17 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       slug: params.slug,
-      product
+      product,
+      products:
+        entries && entries.items && entries.items.length
+        ? entries.items.map(({ fields }) => {
+          const { name, slug } = fields
+          return { name, slug }
+        })
+        : []
     }
   }
+
 }
 
 export async function getStaticPaths() {
