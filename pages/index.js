@@ -1,15 +1,19 @@
 import React from 'react';
 import { createClient }  from 'contentful';
+import Head from '../components/Head';
 import MainLayout from '../layouts/Main';
 import ProductsCarousel from '../components/ProductsCarousel';
 
 const Home = ({ products }) => (
-  <MainLayout products={products}>
-    {
-      products &&
-      <ProductsCarousel products={products} />
-    }
-  </MainLayout>
+  <>
+    <Head />
+    <MainLayout products={products}>
+      {
+        products &&
+        <ProductsCarousel products={products} />
+      }
+    </MainLayout>
+  </>
 )
 
 export async function getStaticProps() {

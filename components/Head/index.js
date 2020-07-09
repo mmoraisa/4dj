@@ -5,6 +5,7 @@ const Head = ({ title = '4DJ', description = "Products 4 DJs" }) => (
     <title>{title}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
+    <meta name="og:description" content={description} />
     <meta name="theme-color" content="#161e32"></meta>
     <meta charSet="utf-8" />
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;700&display=swap" rel="stylesheet"></link>
