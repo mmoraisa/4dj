@@ -12,7 +12,7 @@ const TopBar = ({ products }) => (
       </Link>
       {
         products && products.map(product => (
-          <Link href="/product/[slug]" as={`/product/${product.slug}`}>
+          <Link key={product.slug} href="/product/[slug]" as={`/product/${product.slug}`}>
             <li>{product.name}</li>
           </Link>
         ))

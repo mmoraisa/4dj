@@ -1,24 +1,25 @@
 import React from 'react';
 import MainLayout from '../../layouts/Main';
 import { createClient }  from 'contentful';
+import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 
 const Product = ({ product, products }) => {
   
   if (!product) {
     return null
   }
-  
+
   return (
     <MainLayout products={products}>
       <div id="product">
         <section id="product__info">
           <h1>{product.name}</h1>
           <h2>{product.slogan}</h2>
-          <p>{product.description}</p>
+          <div dangerouslySetInnerHTML={{__html: documentToHtmlString(product.description) }}></div>
         </section>
         <section id="product__images">
-          {product.images.map(image =>
-            <article className="product__images__item">
+          {product.images.map((image, i) =>
+            <article key={i} className="product__images__item">
               <img src={image.url} alt={image.fileName} />
             </article>
           )}
