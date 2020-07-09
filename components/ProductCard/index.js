@@ -47,7 +47,6 @@ const ProductCard = ({ product }) => (
         margin-bottom: 4em;
       }
       .product-card img {
-        box-shadow: 5px 5px 50px rgba(0,0,0,.75);
         display: flex;
         margin-left: 10vh;
         height: 50vh;
