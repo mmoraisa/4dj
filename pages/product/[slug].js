@@ -4,7 +4,10 @@ import { createClient }  from 'contentful';
 
 const Product = ({ product, slug }) => {
   
-  console.log('product-', product)
+  if (!product) {
+    return null
+  }
+  
   return (
   <MainLayout>
     <h1>{product.name}</h1>
