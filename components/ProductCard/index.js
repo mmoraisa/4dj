@@ -7,7 +7,6 @@ const ProductCard = ({ product }) => (
     <article className="product-card">
       <div>
         <h1>{product.name}</h1>
-        <h2>{product.slogan}</h2>
         <p>{product.shortDescription}</p>
         <div className="product-card__control">
           <Link href="/product/[slug]" as={`/product/${product.slug}`}>
@@ -42,7 +41,7 @@ const ProductCard = ({ product }) => (
         text-transform: uppercase;
       }
       .product-card p {
-        font-size: 1em;
+        font-size: 1.5em;
         font-weight: 300;
         margin-bottom: 4em;
       }
