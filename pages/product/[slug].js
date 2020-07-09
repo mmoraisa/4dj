@@ -83,8 +83,7 @@ const Product = ({ product, products }) => {
           display: grid;
           grid-template-columns: 150px 150px 150px;
           grid-gap: 10px;
-          grid-row-gap: 10px;
-          row-gap: 10px;
+          align-content: start;
         }
         .product__images__item {
           align-items: center;
