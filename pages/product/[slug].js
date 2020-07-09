@@ -1,17 +1,41 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { createClient }  from 'contentful';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import { FiShoppingCart } from 'react-icons/fi';
+import { GrFormClose } from 'react-icons/gr';
 import MainLayout from '../../layouts/Main';
 
 const Product = ({ product, products }) => {
   
+  const [showingImage, setShowingImage] = useState(null);
+  const [closingImage, setClosingImage] = useState(false);
+
+  const closeImage = () => {
+    setClosingImage(true);
+
+    setTimeout(() => {
+      setShowingImage(null)
+      setClosingImage(false)
+    }, 300);
+  }
+
+  const showImage = image => {
+    setShowingImage(image)
+  }
+
   if (!product) {
     return null
   }
 
   return (
     <MainLayout products={products}>
+      <div id="image-visualization" className={`${showingImage && !closingImage ? 'active' : ''}`}>
+        <div>
+          <button class="image-visualization__btn-close" onClick={closeImage}><GrFormClose /></button>
+        <img src={showingImage && showingImage.url} alt={showingImage && showingImage.fileName} />
+        </div>
+      </div>
+      <div id="image-visualization__backdrop" className={`${showingImage && !closingImage ? 'active' : ''}`}></div>
       <div id="product">
         <section id="product__info">
           <h1>{product.name}</h1>
@@ -25,7 +49,7 @@ const Product = ({ product, products }) => {
         </section>
         <section id="product__images">
           {product.images.map((image, i) =>
-            <article key={i} className="product__images__item">
+            <article key={i} className="product__images__item" onClick={() => showImage(image)}>
               <img src={image.url} alt={image.fileName} />
             </article>
           )}
@@ -63,8 +87,16 @@ const Product = ({ product, products }) => {
         .product__images__item {
           align-items: center;
           background: #fff;
+          border-radius: 5px;
+          cursor: pointer;
           display: flex;
           justify-content: center;
+          opacity: .8;
+          overflow: hidden;
+          transition: .25s all ease;
+        }
+        .product__images__item:hover {
+          opacity: 1;
         }
         #product__images img {
           width: 100%;
@@ -96,6 +128,55 @@ const Product = ({ product, products }) => {
         }
         .product__btn__buy-now:hover {
           background: #0aff05;
+        }
+        #image-visualization {
+          align-items: center;
+          box-shadow: 5px 5px 30px rgba(0,0,0,.6);
+          border-radius: 5px;
+          display: flex;
+          justify-content: center;
+          position: fixed;
+          top: 5vh;
+          left: 5vh;
+          background: #fff;
+          width: calc(100% - 10vh - 40px);
+          max-height: calc(100% - 10vh - 40px);
+          opacity: 1;
+          padding: 20px;
+          z-index: 10;
+          transition: .3s all ease;
+        }
+        .image-visualization__btn-close {
+          align-items: center;
+          background: none;
+          border: none;
+          color: #333;
+          cursor: pointer;
+          display: flex;
+          font-size: 2em;
+          justify-content: center;
+          outline: none;
+          position: absolute;
+          right: 1em;
+          top: 1em;
+        }
+        #image-visualization img {
+          max-height: calc(90vh - 20px);
+          max-width: 100%;
+        }
+        #image-visualization__backdrop {
+          background: rgba(0,0,0,.4);
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          transition: .3s all ease;
+        }
+        #image-visualization:not(.active),
+        #image-visualization__backdrop:not(.active) {
+          opacity: 0;
+          pointer-events: none;
         }
       `}</style>
     </MainLayout>
