@@ -31,7 +31,11 @@ const Product = ({ product, products }) => {
       <MainLayout products={products}>
         <div id="image-visualization" className={`${showingImage && !closingImage ? 'active' : ''}`}>
           <div>
-            <button name="close" className="image-visualization__btn-close" onClick={closeImage}><GrFormClose /></button>
+            <button
+              aria-label="Fechar visualizador de imagens"
+              name="close"
+              className="image-visualization__btn-close"
+              onClick={closeImage}><GrFormClose /></button>
             <img
               src={showingImage && showingImage.url}
               alt={

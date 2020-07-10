@@ -67,10 +67,12 @@ const ProductsCarousel = ({ products }) => {
           )
         }
         <button
+          aria-label="Ir para o produto anterior"
           name="previous-product"
           className="products-carousel__btn-control products-carousel__btn-control__previous"
           onClick={callPreviousProduct}><FaRegArrowAltCircleLeft /></button>
         <button
+          aria-label="Ir para o próximo produto"
           name="next-product"
           className="products-carousel__btn-control products-carousel__btn-control__next"
           onClick={callNextProduct}><FaRegArrowAltCircleRight /></button>

@@ -35,7 +35,10 @@ const ProductCard = ({ product }) => {
           <p>{product.shortDescription}</p>
           <div className="product-card__control">
             <Link href="/product/[slug]" as={`/product/${product.slug}`}>
-              <button name="more-info" className="product-card__btn">Mais informações</button>
+              <button
+                aria-label="Mais informações"
+                name="more-info"
+                className="product-card__btn">Mais informações</button>
             </Link>
             <a
               target="_blank"
