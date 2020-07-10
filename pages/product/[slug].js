@@ -5,6 +5,7 @@ import { FiShoppingCart } from 'react-icons/fi';
 import { GrFormClose } from 'react-icons/gr';
 import MainLayout from '../../layouts/Main';
 import Head from '../../components/Head';
+import ProductThumbImage from '../../components/ProductThumbImage';
 
 const Product = ({ product, products }) => {
   
@@ -49,9 +50,7 @@ const Product = ({ product, products }) => {
           </section>
           <section id="product__images">
             {product.images.map((image, i) =>
-              <article key={i} className="product__images__item" onClick={() => setShowingImage(image)}>
-                <img src={image.url} alt={image.fileName} />
-              </article>
+              <ProductThumbImage key={i} image={image} onClick={() => setShowingImage(image)} />
             )}
           </section>
         </div>
@@ -84,28 +83,6 @@ const Product = ({ product, products }) => {
             grid-template-columns: 150px 150px 150px;
             grid-gap: 10px;
             align-content: start;
-          }
-          .product__images__item {
-            align-items: center;
-            background: #fff;
-            border-radius: 5px;
-            box-sizing: border-box;
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-            height: 150px;
-            width: 150px;
-            opacity: .8;
-            padding: 5px;
-            overflow: hidden;
-            transition: .25s all ease;
-          }
-          .product__images__item:hover {
-            opacity: 1;
-          }
-          #product__images img {
-            max-width: 100%;
-            max-height: 100%;
           }
           .product__btn {
             align-items: center;
