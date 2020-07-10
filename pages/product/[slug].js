@@ -32,7 +32,13 @@ const Product = ({ product, products }) => {
         <div id="image-visualization" className={`${showingImage && !closingImage ? 'active' : ''}`}>
           <div>
             <button className="image-visualization__btn-close" onClick={closeImage}><GrFormClose /></button>
-          <img src={showingImage && showingImage.url} alt={showingImage && showingImage.fileName} />
+            <img
+              src={showingImage && showingImage.url}
+              alt={
+                showingImage
+                ? showingImage.fileName
+                : "Visualizador de imagens"
+              } />
           </div>
         </div>
         <div id="image-visualization__backdrop" className={`${showingImage && !closingImage ? 'active' : ''}`}></div>
