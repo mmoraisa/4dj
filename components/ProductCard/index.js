@@ -105,7 +105,7 @@ const ProductCard = ({ product }) => {
         }
         .product-card__btn {
           align-items: center;
-          background: rgba(255, 255, 255, .75);
+          background: #fff;
           border: none;
           border-radius: 5px;
           color: #222;
@@ -116,11 +116,11 @@ const ProductCard = ({ product }) => {
           text-decoration: none;
           padding: 10px 20px;
           transition: .3s all ease;
-          opacity: .4;
+          opacity: .75;
         }
         .product-card__btn:hover {
           box-shadow: 3px 3px 15px rgba(0,0,0,.5);
-          opacity: .75;
+          opacity: .9;
         }
         .product-card__btn span {
           margin-left: 10px;
