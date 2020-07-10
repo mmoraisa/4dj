@@ -7,24 +7,30 @@ const TopBar = ({ products }) => (
     <Link href="/">
       <img id="main-logo" src="/logo.png" alt="Logo da 4DJ" />
     </Link>
-    <ul className="top-bar__menu">
-      <Link href="/">
-        <li>Início</li>
-      </Link>
-      {
-        products && products.map(product => (
-          <Link key={product.slug} href="/product/[slug]" as={`/product/${product.slug}`}>
-            <li>{product.name}</li>
-          </Link>
-        ))
-      }
+    <div className="column-right">
+      <ul className="top-bar__menu">
+        <Link href="/">
+          <li>Início</li>
+        </Link>
+        {
+          products && products.map(product => (
+            <Link key={product.slug} href="/product/[slug]" as={`/product/${product.slug}`}>
+              <li>{product.name}</li>
+            </Link>
+          ))
+        }
+      </ul>
       <a className="contact-mail" href="mailto:info@4dj.com.br"><FiMail /><span>info@4dj.com.br</span></a>
-    </ul>
+    </div>
     <style>{`     
       #top-bar {
         display: flex;
         justify-content: space-between;
       } 
+      #top-bar .column-right {
+        align-items: center;
+        display: flex;
+      }
       .contact-mail {
         align-items: center;
         background: rgba(255,255,255,.05);
@@ -32,6 +38,7 @@ const TopBar = ({ products }) => (
         border-radius: 10px;
         color: #fff;
         display: flex;
+        height: 25px;
         margin-left: 3vw;
         font-weight: 600;
         opacity: .75;
