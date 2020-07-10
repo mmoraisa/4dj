@@ -67,9 +67,11 @@ const ProductsCarousel = ({ products }) => {
           )
         }
         <button
+          name="previous-product"
           className="products-carousel__btn-control products-carousel__btn-control__previous"
           onClick={callPreviousProduct}><FaRegArrowAltCircleLeft /></button>
         <button
+          name="next-product"
           className="products-carousel__btn-control products-carousel__btn-control__next"
           onClick={callNextProduct}><FaRegArrowAltCircleRight /></button>
       </section>
