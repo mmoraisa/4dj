@@ -1,6 +1,6 @@
 import Header from 'next/head';
 
-const Head = ({ title = '4DJ', description = "Products 4 DJs" }) => (
+const Head = ({ title = '4DJ', description = "Bags e acessórios pensados e feitos especialmente para DJ’s e apaixonados por música!" }) => (
   <Header>
     <title>{title}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
