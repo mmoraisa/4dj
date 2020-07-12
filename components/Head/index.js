@@ -23,6 +23,13 @@ const Head = ({ title = '4DJ', description = "Bags e acessórios pensados e feit
         top: 0;
         left: 0;
       }
+
+      @media screen and (max-width: 1024px) {
+
+        html, body {
+         padding: 10vw 5vw;
+        }
+      }
     `}</style>
   </Header>
 );

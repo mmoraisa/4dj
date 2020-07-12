@@ -210,6 +210,62 @@ const Product = ({ product, products }) => {
           .loader:not(.active) {
             opacity: 0;
           }
+
+          @media screen and (max-width: 1024px) {
+
+            h1 {
+              margin-top: 2em;
+              font-size: 1.75em;
+              text-align: center;
+            }
+
+            #product {
+              flex-direction: column-reverse;
+            }
+
+            #product__images {
+              width: 100%;
+            }
+
+            #product__info {
+              margin: 0;
+              display: flex;
+              flex-direction: column;
+            }
+
+            .product__images__item {
+              width: calc(25% - 10px);
+            }
+
+            .product__images__item .loader {
+              width: calc(25% - 10px);
+            }
+
+          }
+
+          @media screen and (max-width: 768px) {
+
+            .product__images__item {
+              width: calc(33% - 10px);
+            }
+
+            .product__images__item .loader {
+              width: calc(33% - 10px);
+            }
+
+          }
+
+          @media screen and (max-width: 425px) {
+
+            .product__images__item {
+              width: calc(50% - 10px);
+            }
+
+            .product__images__item .loader {
+              width: calc(50% - 10px);
+            }
+
+          }
         `}</style>
       </MainLayout>
     </>

@@ -75,6 +75,33 @@ const TopBar = ({ products }) => (
         opacity: 1;
         text-shadow: 0px 3px 9px rgba(0, 0, 0, 0.2);
       }
+
+      @media screen and (max-width: 1024px) {
+
+        #top-bar {
+          flex-direction: column;
+        }
+
+        #top-bar .column-right {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
+        #top-bar .column-right .top-bar__menu {
+          align-items: flex-start;
+          flex-direction: column;
+          padding: 0;
+        }
+
+        .top-bar__menu li {
+          font-size: 1.2em;
+          padding: 10px 0;
+        }
+
+        .contact-mail {
+          margin: 0;
+        }
+      }
     `}</style>
   </section>
 )
