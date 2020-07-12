@@ -67,7 +67,7 @@ const Product = ({ product, products }) => {
         <style>{`
           h1 {
             font-size: 2.5em;
-            margin: 1em 0 0 0;
+            margin: 1em 0 .5em 0;
             text-transform: uppercase;
           }
           h2 {
@@ -88,7 +88,6 @@ const Product = ({ product, products }) => {
             margin-right: 10vw;
           }
           #product__images {
-            margin-top: 5vw;
             display: grid;
             grid-template-columns: 150px 150px 150px;
             grid-gap: 10px;
