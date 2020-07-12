@@ -93,6 +93,9 @@ const Product = ({ product, products }) => {
             grid-gap: 10px;
             align-content: start;
           }
+          #product__images article {
+            overflow: hidden;
+          }
           .product__btn {
             align-items: center;
             background: rgba(255, 255, 255, .75);

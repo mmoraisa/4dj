@@ -21,7 +21,7 @@ const ProductThumbImage = ({ image, onClick }) => {
 
     }
     else {
-      setLoading(false)
+      setLoading(true)
       setLoaded(false)
     }
 
@@ -75,9 +75,10 @@ const ProductThumbImage = ({ image, onClick }) => {
           filter: brightness(0.1);
           opacity: .4;
           position: absolute;
-          margin-left: -100px;
-          margin-top: -100px;
+          margin-left: -75px;
+          margin-top: -75px;
           transition: .3s all ease;
+          width: 150px;
         }
         .loader:not(.active) {
           opacity: 0;
