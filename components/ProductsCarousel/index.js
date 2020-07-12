@@ -30,12 +30,12 @@ const ProductsCarousel = ({ products }) => {
   ), [products, currentProductIndex])
 
   useEffect(() => {
-    const interval = setInterval(incrementElapsedTime, TIME_TICK * 1000);
-    return () => clearInterval(interval);
+    // const interval = setInterval(incrementElapsedTime, TIME_TICK * 1000);
+    // return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
-    setCurrentProductIndex(0)
+    setCurrentProductIndex(1)
   }, [products])
 
   useEffect(() => {
@@ -77,6 +77,18 @@ const ProductsCarousel = ({ products }) => {
           className="products-carousel__btn-control products-carousel__btn-control__next"
           onClick={callNextProduct}><FaRegArrowAltCircleRight /></button>
       </section>
+      <div id="products-carousel__btn-controller__mobile">
+        <button
+            aria-label="Ir para o produto anterior"
+            name="previous-product"
+            className="products-carousel__btn-control__mobile products-carousel__btn-control__previous"
+            onClick={callPreviousProduct}><FaRegArrowAltCircleLeft /></button>
+          <button
+            aria-label="Ir para o próximo produto"
+            name="next-product"
+            className="products-carousel__btn-control__mobile products-carousel__btn-control__next"
+            onClick={callNextProduct}><FaRegArrowAltCircleRight /></button>
+        </div>
       <style>{`
         #products-carousel {
           align-items: center;
@@ -101,7 +113,8 @@ const ProductsCarousel = ({ products }) => {
         .products-carousel__product:not(.active).to-right {
           left: 100vw;
         }
-        .products-carousel__btn-control {
+        .products-carousel__btn-control,
+        .products-carousel__btn-control__mobile {
           align-items: center;
           background: rgba(255,255,255,.02);
           border: none;
@@ -127,6 +140,56 @@ const ProductsCarousel = ({ products }) => {
         .products-carousel__btn-control__next {
           border-radius: 0 10px 10px 0;
           left: 80vw;
+        }
+
+        .products-carousel__btn-control__mobile,
+        #products-carousel__btn-controller__mobile {
+          display: none;
+        }
+
+        #products-carousel__btn-controller__mobile {
+          align-items: center;
+          display: flex;
+          justify-content: center;
+        }
+
+        @media screen and (max-width: 1024px) {
+
+          #products-carousel {
+            height: initial;
+            width: 100%;
+          }
+
+          .products-carousel__product {
+            position: relative;
+            width: 100%;
+          }
+
+          .products-carousel__product:not(.active) {
+            display: none;
+          }
+
+          .products-carousel__btn-control__mobile {
+            display: flex;
+            position: initial;
+            height: 40px;
+            font-size: 20px;
+          }
+          
+          #products-carousel__btn-controller__mobile {
+            display: flex;
+            margin-top: 3vh;
+          }
+
+          
+          #products-carousel__btn-controller__mobile > * {
+            margin: 0 3vw;
+          }
+
+          .products-carousel__btn-control {
+            display: none;
+          }
+
         }
       `}</style>
     </>

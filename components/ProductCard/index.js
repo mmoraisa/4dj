@@ -65,6 +65,21 @@ const ProductCard = ({ product }) => {
             src={product.featuredImage.url}
             />
         </div>
+        <div className="product-card__control__mobile">
+            <Link href="/product/[slug]" as={`/product/${product.slug}`}>
+              <button
+                aria-label="Mais informações"
+                name="more-info"
+                className="product-card__btn">Mais informações</button>
+            </Link>
+            <a
+              target="_blank"
+              href={product.link}
+              rel="noopener noreferrer"
+              className="product-card__btn product-card__btn__buy-now">
+                <FiShoppingCart /><span>Quero a minha agora!</span>
+            </a>
+          </div>
       </article>
       <style>{`
         .product-card {
@@ -98,7 +113,8 @@ const ProductCard = ({ product }) => {
           margin-left: 10vh;
           max-height: 50vh;
         }
-        .product-card__control {
+        .product-card__control,
+        .product-card__control__mobile {
           display: flex;
           pointer-events: all;
           z-index: 1;
@@ -155,6 +171,53 @@ const ProductCard = ({ product }) => {
         }
         .loader:not(.active) {
           opacity: 0;
+        }
+
+        .product-card__control__mobile {
+          display: none;
+        }
+
+        @media screen and (max-width: 1024px) {
+
+          .product-card {
+            height: initial;
+            flex-direction: column;
+          }
+
+          .product-card > div {
+            flex: initial;
+          }
+
+          .product-card p {
+            margin: 0;
+          }
+
+          .product-image {
+            height: 50vh;
+            width: 90vw;
+          }
+
+          .product-card img {
+            margin-left: 0;
+          }
+
+          .product-card h1 {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin: 0;
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: .5em;
+          }
+
+          .product-card__control {
+            display: none;
+          }
+          
+          .product-card__control__mobile {
+            display: flex;
+          }
+
         }
       `}</style>
     </>
