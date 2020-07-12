@@ -88,12 +88,13 @@ const Product = ({ product, products }) => {
             margin-right: 10vw;
           }
           #product__images {
-            display: grid;
-            grid-template-columns: 150px 150px 150px;
-            grid-gap: 10px;
-            align-content: start;
+            width: 495px;
           }
           #product__images article {
+            align-items: center;
+            display: inline-flex;
+            justify-content: center;
+            margin: 5px;
             overflow: hidden;
           }
           .product__btn {
@@ -172,6 +173,42 @@ const Product = ({ product, products }) => {
           #image-visualization__backdrop:not(.active) {
             opacity: 0;
             pointer-events: none;
+          }
+          .product__images__item {
+            align-items: center;
+            background: #fff;
+            border-radius: 5px;
+            box-sizing: border-box;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            height: 150px;
+            width: 150px;
+            opacity: .8;
+            padding: 5px;
+            overflow: hidden;
+            transition: .25s all ease;
+          }
+          .product__images__item:hover {
+            opacity: 1;
+          }
+          .product__images__item img:not(.loader) {
+            max-width: 100%;
+            height: 75%;
+            transition: .3s all ease;
+          }
+          .product__images__item img:not(.loader):not(.loaded) {
+            opacity: 0;
+          }
+          .loader {
+            filter: brightness(0.1);
+            opacity: .4;
+            position: absolute;
+            transition: .3s all ease;
+            width: 150px;
+          }
+          .loader:not(.active) {
+            opacity: 0;
           }
         `}</style>
       </MainLayout>
