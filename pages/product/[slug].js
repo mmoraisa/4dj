@@ -46,9 +46,9 @@ const Product = ({ product, products }) => {
           </div>
         </div>
         <div id="image-visualization__backdrop" className={`${showingImage && !closingImage ? 'active' : ''}`}></div>
+        <h1>{product.name}</h1>
         <div id="product">
           <section id="product__info">
-            <h1>{product.name}</h1>
             <div dangerouslySetInnerHTML={{__html: documentToHtmlString(product.description) }}></div>
             <a
               target="_blank"
