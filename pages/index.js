@@ -1,8 +1,11 @@
 import React from 'react';
+import ReactGA from 'react-ga'
 import { createClient }  from 'contentful';
 import Head from '../components/Head';
 import MainLayout from '../layouts/Main';
 import ProductsCarousel from '../components/ProductsCarousel';
+
+ReactGA.pageview('home');
 
 const Home = ({ products }) => (
   <>

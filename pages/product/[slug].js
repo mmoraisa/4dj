@@ -1,4 +1,5 @@
 import React, { useCallback, useState } from 'react';
+import ReactGA from 'react-ga'
 import { createClient }  from 'contentful';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import { FiShoppingCart } from 'react-icons/fi';
@@ -7,7 +8,7 @@ import MainLayout from '../../layouts/Main';
 import Head from '../../components/Head';
 import ProductThumbImage from '../../components/ProductThumbImage';
 
-const Product = ({ product, products }) => {
+const Product = ({ product, products, slug }) => {
   
   const [showingImage, setShowingImage] = useState(null);
   const [closingImage, setClosingImage] = useState(false);
@@ -24,6 +25,8 @@ const Product = ({ product, products }) => {
   if (!product) {
     return null
   }
+
+  ReactGA.pageview(`product/${slug}`);
   
   return (
     <>
