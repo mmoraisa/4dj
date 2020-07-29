@@ -4,13 +4,14 @@ import { createClient }  from 'contentful';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import { FiShoppingCart } from 'react-icons/fi';
 import { GrFormClose } from 'react-icons/gr';
+import { ANALYTICS_ID } from '../../defaults';
 import MainLayout from '../../layouts/Main';
 import Head from '../../components/Head';
 import ProductThumbImage from '../../components/ProductThumbImage';
 
 const Product = ({ product, products, slug }) => {
 
-  ReactGA.initialize(process.env.ANALYTICS_ID)
+  ReactGA.initialize(ANALYTICS_ID)
   ReactGA.pageview(`product/${slug}`)
   
   const [showingImage, setShowingImage] = useState(null);

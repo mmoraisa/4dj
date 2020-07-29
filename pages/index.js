@@ -4,10 +4,11 @@ import { createClient }  from 'contentful';
 import Head from '../components/Head';
 import MainLayout from '../layouts/Main';
 import ProductsCarousel from '../components/ProductsCarousel';
+import { ANALYTICS_ID } from '../defaults';
 
 const Home = ({ products }) => {
 
-  ReactGA.initialize(process.env.ANALYTICS_ID)
+  ReactGA.initialize(ANALYTICS_ID)
   ReactGA.pageview('home')  
 
   return (
