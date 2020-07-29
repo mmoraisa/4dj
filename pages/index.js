@@ -5,19 +5,23 @@ import Head from '../components/Head';
 import MainLayout from '../layouts/Main';
 import ProductsCarousel from '../components/ProductsCarousel';
 
-ReactGA.pageview('home');
+const Home = ({ products }) => {
 
-const Home = ({ products }) => (
-  <>
-    <Head />
-    <MainLayout products={products}>
-      {
-        products &&
-        <ProductsCarousel products={products} />
-      }
-    </MainLayout>
-  </>
-)
+  ReactGA.initialize('UA-173930791-1')
+  ReactGA.pageview('home')  
+
+  return (
+    <>
+      <Head />
+      <MainLayout products={products}>
+        {
+          products &&
+          <ProductsCarousel products={products} />
+        }
+      </MainLayout>
+    </>
+  )
+}
 
 export async function getStaticProps() {
 

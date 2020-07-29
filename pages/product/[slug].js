@@ -26,7 +26,8 @@ const Product = ({ product, products, slug }) => {
     return null
   }
 
-  ReactGA.pageview(`product/${slug}`);
+  ReactGA.initialize('UA-173930791-1')
+  ReactGA.pageview(`product/${slug}`)
   
   return (
     <>
