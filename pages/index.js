@@ -7,7 +7,7 @@ import ProductsCarousel from '../components/ProductsCarousel';
 
 const Home = ({ products }) => {
 
-  ReactGA.initialize('UA-173930791-1')
+  ReactGA.initialize(process.env.ANALYTICS_ID)
   ReactGA.pageview('home')  
 
   return (

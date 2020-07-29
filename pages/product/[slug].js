@@ -9,6 +9,9 @@ import Head from '../../components/Head';
 import ProductThumbImage from '../../components/ProductThumbImage';
 
 const Product = ({ product, products, slug }) => {
+
+  ReactGA.initialize(process.env.ANALYTICS_ID)
+  ReactGA.pageview(`product/${slug}`)
   
   const [showingImage, setShowingImage] = useState(null);
   const [closingImage, setClosingImage] = useState(false);
@@ -25,9 +28,6 @@ const Product = ({ product, products, slug }) => {
   if (!product) {
     return null
   }
-
-  ReactGA.initialize('UA-173930791-1')
-  ReactGA.pageview(`product/${slug}`)
   
   return (
     <>
