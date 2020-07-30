@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
+import ReactGA from 'react-ga'
 import { FaRegArrowAltCircleLeft, FaRegArrowAltCircleRight } from 'react-icons/fa';
 import ProductCard from '../ProductCard';
 
@@ -16,6 +17,13 @@ const ProductsCarousel = ({ products }) => {
   )
 
   const callPreviousProduct = useCallback(() =>
+
+    ReactGA.event({
+      category: 'Products Carousel',
+      action: 'Click in previous arrow',
+      label: 'User clicked in previous arrow to see last product'
+    })
+
     setCurrentProductIndex(
       products[currentProductIndex - 1]
       ? currentProductIndex - 1
@@ -23,6 +31,13 @@ const ProductsCarousel = ({ products }) => {
   ), [products, currentProductIndex])
 
   const callNextProduct = useCallback(() =>
+
+    ReactGA.event({
+      category: 'Products Carousel',
+      action: 'Click in next arrow',
+      label: 'User clicked in next arrow to see more products'
+    })
+
     setCurrentProductIndex(
       products[currentProductIndex + 1]
       ? currentProductIndex + 1

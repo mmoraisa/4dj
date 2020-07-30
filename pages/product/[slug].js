@@ -65,7 +65,16 @@ const Product = ({ product, products, slug }) => {
           </section>
           <section id="product__images">
             {product.images.map((image, i) =>
-              <ProductThumbImage key={i} image={image} onClick={() => setShowingImage(image)} />
+              <ProductThumbImage key={i} image={image} onClick={() => {
+                setShowingImage(image)
+
+                ReactGA.event({
+                  category: 'Product',
+                  action: 'Click in product thumb',
+                  label: 'User clicked in product thumb to view zoomed image'
+                })
+
+              }} />
             )}
           </section>
         </div>
