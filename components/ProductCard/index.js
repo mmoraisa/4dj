@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import ReactGA from 'react-ga';
 import Link from 'next/link';
 import { FiShoppingCart } from 'react-icons/fi';
 
@@ -70,13 +71,27 @@ const ProductCard = ({ product }) => {
               <button
                 aria-label="Mais informações"
                 name="more-info"
-                className="product-card__btn">Mais informações</button>
+                className="product-card__btn"
+                onClick={() => {
+                  ReactGA.event({
+                    category: 'Product',
+                    action: 'User asks to know more',
+                    label: `Know more (${product.slug})`
+                  })
+                }}>Mais informações</button>
             </Link>
             <a
               target="_blank"
               href={product.link}
               rel="noopener noreferrer"
-              className="product-card__btn product-card__btn__buy-now">
+              className="product-card__btn product-card__btn__buy-now"
+              onClick={() => {
+                ReactGA.event({
+                  category: 'Product',
+                  action: 'User asks to buy',
+                  label: `Order Now (${product.slug})`
+                })
+              }}>
                 <FiShoppingCart /><span>Quero a minha agora!</span>
             </a>
           </div>

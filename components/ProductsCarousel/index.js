@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import ReactGA from 'react-ga'
+import ReactGA from 'react-ga';
 import { FaRegArrowAltCircleLeft, FaRegArrowAltCircleRight } from 'react-icons/fa';
 import ProductCard from '../ProductCard';
 

@@ -59,7 +59,14 @@ const Product = ({ product, products, slug }) => {
               target="_blank"
               href={product.link}
               rel="noopener noreferrer"
-              className="product__btn product__btn__buy-now">
+              className="product__btn product__btn__buy-now"
+              onClick={() => {
+                ReactGA.event({
+                  category: 'Product',
+                  action: 'User asks to buy',
+                  label: `Order Now (${slug})`
+                })
+              }}>
                 <FiShoppingCart /><span>Quero a minha agora!</span>
             </a>
           </section>
@@ -71,7 +78,7 @@ const Product = ({ product, products, slug }) => {
                 ReactGA.event({
                   category: 'Product',
                   action: 'Click in product thumb',
-                  label: 'User clicked in product thumb to view zoomed image'
+                  label: `View ${slug} image`
                 })
 
               }} />
