@@ -16,7 +16,13 @@ const ProductsCarousel = ({ products }) => {
     []
   )
 
-  const callPreviousProduct = useCallback(() =>
+  const callPreviousProduct = useCallback(() => {
+
+    setCurrentProductIndex(
+      products[currentProductIndex - 1]
+      ? currentProductIndex - 1
+      : products.length - 1
+    )
 
     ReactGA.event({
       category: 'Products Carousel',
@@ -24,13 +30,15 @@ const ProductsCarousel = ({ products }) => {
       label: 'User clicked in previous arrow to see last product'
     })
 
-    setCurrentProductIndex(
-      products[currentProductIndex - 1]
-      ? currentProductIndex - 1
-      : products.length - 1
-  ), [products, currentProductIndex])
+  }, [products, currentProductIndex])
 
-  const callNextProduct = useCallback(() =>
+  const callNextProduct = useCallback(() => {
+
+    setCurrentProductIndex(
+      products[currentProductIndex + 1]
+      ? currentProductIndex + 1
+      : 0
+    )
 
     ReactGA.event({
       category: 'Products Carousel',
@@ -38,11 +46,7 @@ const ProductsCarousel = ({ products }) => {
       label: 'User clicked in next arrow to see more products'
     })
 
-    setCurrentProductIndex(
-      products[currentProductIndex + 1]
-      ? currentProductIndex + 1
-      : 0
-  ), [products, currentProductIndex])
+  }, [products, currentProductIndex])
 
   useEffect(() => {
     // const interval = setInterval(incrementElapsedTime, TIME_TICK * 1000);
