@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-const ProductThumbImage = ({ image, onClick }) => {
+const ProductThumbImage = ({ image, onClick, selected }) => {
 
   const imageRef = useRef(null)
   const [loaded, setLoaded] = useState(false)
@@ -29,7 +29,7 @@ const ProductThumbImage = ({ image, onClick }) => {
 
   return (
     <>
-      <article className="product__images__item" onClick={loading ? () => {} : onClick}>
+      <article className={`product__images__item ${selected && 'selected'}`} onClick={loading ? () => {} : onClick}>
         <img
           alt="Indicador de carregamento"
           className={`loader ${loading && 'active'}`}

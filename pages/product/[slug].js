@@ -16,6 +16,8 @@ const Product = ({ product, products, slug }) => {
   
   const [showingImage, setShowingImage] = useState(null);
   const [closingImage, setClosingImage] = useState(false);
+  const [showingColors, setShowingColors] = useState(false);
+  const [selectedProductOption, setSelectedProductOption] = useState(product.options[0]);
 
   const closeImage = useCallback(() => {
     setClosingImage(true);
@@ -55,20 +57,51 @@ const Product = ({ product, products, slug }) => {
         <div id="product">
           <section id="product__info">
             <div dangerouslySetInnerHTML={{__html: documentToHtmlString(product.description) }}></div>
-            <a
-              target="_blank"
-              href={product.link}
-              rel="noopener noreferrer"
-              className="product__btn product__btn__buy-now"
-              onClick={() => {
-                ReactGA.event({
-                  category: 'Product',
-                  action: 'User asks to buy',
-                  label: `Order Now (${slug})`
-                })
-              }}>
-                <FiShoppingCart /><span>Quero a minha agora!</span>
-            </a>
+            {
+              showingColors
+              ? (
+                <>
+                  <h1>Opções de cores</h1>
+                  <div className="product__options">
+                  {product.options.map((option, i) =>
+                    <ProductThumbImage
+                      key={i}
+                      image={option.fields.photo.fields.file}
+                      onClick={() => {
+                        setSelectedProductOption(option)
+
+                        ReactGA.event({
+                          category: 'Product',
+                          action: 'Select in product option',
+                          label: `View product ${slug} option: ${option.fields.name}`
+                        })
+
+                      }}
+                      selected={option === selectedProductOption} />
+                  )}
+                  </div>
+                <a
+                  target="_blank"
+                  href={selectedProductOption.fields.pagseguroLink}
+                  rel="noopener noreferrer"
+                  className="product__btn product__btn__buy-now"
+                  onClick={() => {
+                    ReactGA.event({
+                      category: 'Product',
+                      action: 'User asks to buy',
+                      label: `Order Now (${slug})`
+                    })
+                  }}>
+                    <FiShoppingCart /><span>Comprar</span>
+                </a>
+                </>
+              )
+              : (
+                <div className="product__btn product__btn__buy-now" onClick={() => setShowingColors(true)}>
+                  <span>Quero a minha agora!</span>
+                </div>
+              )
+            }
           </section>
           <section id="product__images">
             {product.images.map((image, i) =>
@@ -80,7 +113,6 @@ const Product = ({ product, products, slug }) => {
                   action: 'Click in product thumb',
                   label: `View ${slug} image`
                 })
-
               }} />
             )}
           </section>
@@ -205,10 +237,15 @@ const Product = ({ product, products, slug }) => {
             justify-content: center;
             height: 150px;
             width: 150px;
-            opacity: .8;
+            opacity: .6;
             padding: 5px;
             overflow: hidden;
             transition: .25s all ease;
+          }
+          .product__images__item.selected {
+            border: 3px solid #24d7ff;
+            box-shadow: 0 0 7px rgb(25, 213, 255);
+            opacity: 1;
           }
           .product__images__item:hover {
             opacity: 1;
@@ -230,6 +267,13 @@ const Product = ({ product, products, slug }) => {
           }
           .loader:not(.active) {
             opacity: 0;
+          }
+          .product__options {
+            display: flex;
+            flex-wrap: wrap;
+          }
+          .product__options .product__images__item {
+            margin: 5px;
           }
 
           @media screen and (max-width: 1024px) {
@@ -312,7 +356,7 @@ export async function getStaticProps({ params }) {
     content_type: 'product',
     'fields.slug[in]': slug,
   });
-
+  
   let entry = filteredEntries && filteredEntries.items && filteredEntries.items.length ? filteredEntries.items[0] : null;
 
   if (!entry) {
@@ -324,6 +368,11 @@ export async function getStaticProps({ params }) {
     }
   }
 
+  const filteredOptions = await client.getEntries({
+    content_type: 'productOption',
+    'fields.product.sys.id': entry.sys.id
+  });
+
   const product = {
     name: entry.fields.name,
     slogan: entry.fields.slogan,
@@ -333,7 +382,8 @@ export async function getStaticProps({ params }) {
     images: entry.fields.images.map(({ fields }) => {
       const { url, fileName } = fields.file
       return { url, fileName }
-    })
+    }),
+    options: filteredOptions.items
   }
 
   return {
