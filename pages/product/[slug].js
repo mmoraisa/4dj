@@ -17,7 +17,7 @@ const Product = ({ product, products, slug }) => {
   const [showingImage, setShowingImage] = useState(null);
   const [closingImage, setClosingImage] = useState(false);
   const [showingColors, setShowingColors] = useState(false);
-  const [selectedProductOption, setSelectedProductOption] = useState(product.options[0]);
+  const [selectedProductOption, setSelectedProductOption] = useState(product ? product.options[0] : null);
 
   const closeImage = useCallback(() => {
     setClosingImage(true);
