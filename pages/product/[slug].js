@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import ReactGA from 'react-ga'
 import { createClient }  from 'contentful';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
@@ -16,7 +16,9 @@ const Product = ({ product, products, slug }) => {
   
   const [showingImage, setShowingImage] = useState(null);
   const [closingImage, setClosingImage] = useState(false);
-  const [showingColors, setShowingColors] = useState(false);
+  const [showingOptions, setShowingOptions] = useState(
+    typeof window !== 'undefined' && window.location.hash === '#options'
+  );
   const [selectedProductOption, setSelectedProductOption] = useState(product ? product.options[0] : null);
 
   const closeImage = useCallback(() => {
@@ -27,6 +29,16 @@ const Product = ({ product, products, slug }) => {
       setClosingImage(false)
     }, 300)
   }, []);
+
+  const productOptionsRef = useRef(null);
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (productOptionsRef.current) {
+        productOptionsRef.current.scrollIntoView();
+      }
+    }, 500)
+  }, [])
 
   if (!product) {
     return null
@@ -58,46 +70,46 @@ const Product = ({ product, products, slug }) => {
           <section id="product__info">
             <div dangerouslySetInnerHTML={{__html: documentToHtmlString(product.description) }}></div>
             {
-              showingColors
+              showingOptions
               ? (
                 <>
                   <h1>Opções de cores</h1>
-                  <div className="product__options">
-                  {product.options.map((option, i) =>
-                    <ProductThumbImage
-                      key={i}
-                      image={option.fields.photo.fields.file}
-                      onClick={() => {
-                        setSelectedProductOption(option)
+                  <div className="product__options" ref={productOptionsRef}>
+                    {product.options.map((option, i) =>
+                      <ProductThumbImage
+                        key={i}
+                        image={option.fields.photo.fields.file}
+                        onClick={() => {
+                          setSelectedProductOption(option)
 
-                        ReactGA.event({
-                          category: 'Product',
-                          action: 'Select in product option',
-                          label: `View product ${slug} option: ${option.fields.name}`
-                        })
+                          ReactGA.event({
+                            category: 'Product',
+                            action: 'Select in product option',
+                            label: `View product ${slug} option: ${option.fields.name}`
+                          })
 
-                      }}
-                      selected={option === selectedProductOption} />
-                  )}
+                        }}
+                        selected={option === selectedProductOption} />
+                    )}
                   </div>
-                <a
-                  target="_blank"
-                  href={selectedProductOption.fields.pagseguroLink}
-                  rel="noopener noreferrer"
-                  className="product__btn product__btn__buy-now"
-                  onClick={() => {
-                    ReactGA.event({
-                      category: 'Product',
-                      action: 'User asks to buy',
-                      label: `Order Now (${slug})`
-                    })
-                  }}>
-                    <FiShoppingCart /><span>Comprar</span>
-                </a>
-                </>
-              )
+                  <a
+                    target="_blank"
+                    href={selectedProductOption.fields.pagseguroLink}
+                    rel="noopener noreferrer"
+                    className="product__btn product__btn__buy-now"
+                    onClick={() => {
+                      ReactGA.event({
+                        category: 'Product',
+                        action: 'User asks to buy',
+                        label: `Order Now (${slug})`
+                      })
+                    }}>
+                      <FiShoppingCart /><span>Comprar</span>
+                  </a>
+                  </>
+                )
               : (
-                <div className="product__btn product__btn__buy-now" onClick={() => setShowingColors(true)}>
+                <div className="product__btn product__btn__buy-now" onClick={() => setShowingOptions(true)}>
                   <span>Quero a minha agora!</span>
                 </div>
               )

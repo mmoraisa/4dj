@@ -41,13 +41,12 @@ const ProductCard = ({ product }) => {
                 name="more-info"
                 className="product-card__btn">Mais informações</button>
             </Link>
-            <a
-              target="_blank"
-              href={product.link}
-              rel="noopener noreferrer"
-              className="product-card__btn product-card__btn__buy-now">
-                <FiShoppingCart /><span>Quero a minha agora!</span>
-            </a>
+            <Link href="/product/[slug]#options" as={`/product/${product.slug}#options`}>
+              <button
+                aria-label="Quero a minha agora!"
+                name="buy-now"
+                className="product-card__btn product-card__btn__buy-now"><FiShoppingCart /><span>Quero a minha agora!</span></button>
+            </Link>
           </div>
         </div>
         <div className="product-image">
@@ -80,20 +79,21 @@ const ProductCard = ({ product }) => {
                   })
                 }}>Mais informações</button>
             </Link>
-            <a
-              target="_blank"
-              href={product.link}
-              rel="noopener noreferrer"
-              className="product-card__btn product-card__btn__buy-now"
-              onClick={() => {
-                ReactGA.event({
-                  category: 'Product',
-                  action: 'User asks to buy',
-                  label: `Order Now (${product.slug})`
-                })
-              }}>
-                <FiShoppingCart /><span>Quero a minha agora!</span>
-            </a>
+            <Link href="/product/[slug]#options" as={`/product/${product.slug}#options`}>
+              <button
+                aria-label="Quero a minha agora!"
+                name="buy-now"
+                className="product-card__btn product-card__btn__buy-now"
+                onClick={() => {
+                  ReactGA.event({
+                    category: 'Product',
+                    action: 'User asks to buy',
+                    label: `Order Now (${product.slug})`
+                  })
+                }}>
+                  <FiShoppingCart /><span>Quero a minha agora!</span>
+                </button>
+            </Link>
           </div>
       </article>
       <style>{`
