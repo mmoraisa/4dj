@@ -9,6 +9,10 @@ const Footer = () => (
           <img alt="Instagram logo" src="/insta.png"/>
           <span>@4DJOficial</span>
         </a>
+        <a rel="noopener noreferrer" target="_blank" href="https://www.facebook.com/4DJOFICIAL">
+          <img alt="Facebook logo" src="/face.png"/>
+          <span>@4DJOFICIAL</span>
+        </a>
       </section>
     </footer>
     <style>{`
@@ -36,7 +40,7 @@ const Footer = () => (
         text-decoration: none;
       }
       #social-media img {
-        width: 50px;
+        height: 50px;
       }
       #social-media span {
         color: #fff;

@@ -21,6 +21,9 @@ const TopBar = ({ products }) => (
         }
       </ul>
       <a className="contact-mail" href="mailto:info@4dj.com.br"><FiMail /><span>info@4dj.com.br</span></a>
+      <a className="whats" target="_blank" href="https://api.whatsapp.com/send?phone=5511959589866">
+        <img alt="Whatsapp" src="/whats.png"/>
+      </a>
     </div>
     <style>{`     
       #top-bar {
@@ -39,7 +42,7 @@ const TopBar = ({ products }) => (
         color: #fff;
         display: flex;
         height: 25px;
-        margin-left: 3vw;
+        margin: 0 1.5vw 0 3vw;
         font-weight: 600;
         opacity: .75;
         outline: none;
@@ -52,6 +55,10 @@ const TopBar = ({ products }) => (
       }
       .contact-mail span {
         margin-left: 10px;
+      }
+      a.whats img {
+        width: 45px;
+        height: 45px;
       }
       #main-logo {
         cursor: pointer;
