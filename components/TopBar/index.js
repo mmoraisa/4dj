@@ -21,9 +21,9 @@ const TopBar = ({ products }) => (
         }
       </ul>
       <a className="contact-mail" href="mailto:info@4dj.com.br"><FiMail /><span>info@4dj.com.br</span></a>
-      <a className="whats" target="_blank" href="https://api.whatsapp.com/send?phone=5511959589866">
+      {/* <a className="whats" target="_blank" href="https://api.whatsapp.com/send?phone=5511959589866">
         <img alt="Whatsapp" src="/whats.png"/>
-      </a>
+      </a> */}
     </div>
     <style>{`     
       #top-bar {
